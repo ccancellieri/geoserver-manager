@@ -25,18 +25,27 @@
 
 package it.geosolutions.geoserver.rest.encoder.metadata;
 
-import it.geosolutions.geoserver.rest.encoder.utils.NestedElementEncoder;
 
-public class GSMetadataEncoder <T extends GSDimensionInfoEncoder> extends NestedElementEncoder{
-
-	public final static String METADATA="metadata";
+public class GSFeatureDimensionInfoEncoder extends GSDimensionInfoEncoder {
+	public final static String ATTRIBUTE="attribute";
 	
-	public GSMetadataEncoder() {
-		super(METADATA);
+	/**
+	 * if this dimension is enabled this constructor should be called.
+	 * @param attribute the attribute field name to use as dimension
+	 */
+	public GSFeatureDimensionInfoEncoder(final String attribute){
+		super(true);
+		add(ATTRIBUTE, attribute);
 	}
-	 
-//	public void addMetadata(final String key, final T value) {
-//		this.add(key, value.getRoot());
-//	}
+	
+	/**
+	 * Change the attribute used as dimension
+	 * @param attribute the attribute to use as dimension
+	 */
+	public void setAttribute(final String attribute){
+		set(ATTRIBUTE, attribute);
+	}
+	
+	
 
 }
